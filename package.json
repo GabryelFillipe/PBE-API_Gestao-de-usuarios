@@ -1,0 +1,15 @@
+{
+  "name": "api-gestao-de-clientes-e-produtos",
+  "version": "1.0.0",
+  "description": "API de gerenciamente de clientes e produtos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabryel Fillipe",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
