@@ -73,9 +73,7 @@ const createCliente = (newCliente) => {
 const editarClientes = (id, modificacoes) => {
 
     const index = clientes.findIndex(clientes => clientes.id === id)
-    if( index === -1){
-        return null
-    }
+    
     
     clientes[index] ={
         ...clientes[index],
