@@ -53,9 +53,7 @@ const createProduto = (newProduto) => {
 const editarProdutos = (id, modificacoes) => {
 
     const index = produtos.findIndex(produtos => produtos.id === id)
-    if( index === -1){
-        return null
-    }
+
     
     produtos[index] ={
         ...produtos[index],
