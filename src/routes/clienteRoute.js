@@ -8,8 +8,6 @@ router.get('/', clientesController.getAllClientes)
 
 router.get('/:id', clientesController.getClienteById)
 
-router.get('/nome/:nome', clientesController.getClienteByname)
-
 router.post('/', clientesController.createCliente)
 
 router.patch('/:id', clientesController.editarClientes)

@@ -1,8 +1,28 @@
 const clientesModel = require('../model/clientesModel')
 
 const getAllClientes = (req, res) => {
-    const clientes = clientesModel.findAllClientes()
-    res.status(200).json(clientes)
+    
+    const { nome } = req.query;
+
+
+    if (nome) {
+        const produto = clientesModel.findByName(nome);
+
+ 
+        if (produto) {
+            return res.status(200).json(produto);
+        } 
+
+        else {
+            return res.status(404).json({ mensagem: `Cliente com nome "${nome}" não encontrado.` });
+        }
+    } 
+
+    else {
+
+        const clientes = clientesModel.findAllProdutos();
+        return res.status(200).json(clientes);
+    }
 }
 
 const getClienteById = (req, res) => {
@@ -14,18 +34,6 @@ const getClienteById = (req, res) => {
         res.status(200).json(cliente)
     } else {
         res.status(404).json({ mensagem: `Cliente ${id} nâo encontrado` })
-    }
-}
-const getClienteByname = (req, res) => {
-
-    const nome = (req.params.nome)
-
-    const cliente = clientesModel.findByName(nome)
-
-    if (cliente) {
-        res.status(200).json(cliente)
-    } else {
-        res.status(404).json({ mensagem: `Cliente ${nome} nâo encontrado` })
     }
 }
 
@@ -70,7 +78,6 @@ const removerCliente = (req, res) => {
 module.exports = {
     getAllClientes,
     getClienteById,
-    getClienteByname,
     createCliente,
     editarClientes,
     removerCliente

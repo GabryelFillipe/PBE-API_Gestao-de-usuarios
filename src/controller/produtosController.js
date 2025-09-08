@@ -1,8 +1,28 @@
 const produtosModel = require('../model/produtosModel')
 
 const getAllProdutos = (req, res) => {
-    const produtos = produtosModel.findAllProdutos()
-    res.status(200).json(produtos)
+    
+    const { nome } = req.query;
+
+
+    if (nome) {
+        const produto = produtosModel.findByName(nome);
+
+ 
+        if (produto) {
+            return res.status(200).json(produto);
+        } 
+
+        else {
+            return res.status(404).json({ mensagem: `Produto com nome "${nome}" não encontrado.` });
+        }
+    } 
+
+    else {
+
+        const produtos = produtosModel.findAllProdutos();
+        return res.status(200).json(produtos);
+    }
 }
 
 const getProdutoById = (req, res) => {
@@ -16,18 +36,7 @@ const getProdutoById = (req, res) => {
         res.status(404).json({ mensagem: `Produto ${id} nâo encontrado` })
     }
 }
-const getProdutoByname = (req, res) => {
 
-    const nome = (req.params.nome)
-
-    const produto = produtosModel.findByName(nome)
-
-    if (produto) {
-        res.status(200).json(produto)
-    } else {
-        res.status(404).json({ mensagem: `Produto ${nome} nâo encontrado` })
-    }
-}
 
 const createProduto = (req, res) => {
     const { nome, email } = req.body
@@ -69,7 +78,6 @@ const removerProdutos = (req, res) => {
 module.exports = {
     getAllProdutos,
     getProdutoById,
-    getProdutoByname,
     createProduto,
     editarProdutos,
     removerProdutos

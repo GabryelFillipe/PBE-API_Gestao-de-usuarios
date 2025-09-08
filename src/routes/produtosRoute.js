@@ -8,8 +8,6 @@ router.get('/', produtosController.getAllProdutos)
 
 router.get('/:id', produtosController.getProdutoById)
 
-router.get('/nome/:nome', produtosController.getProdutoByname)
-
 router.post('/', produtosController.createProduto)
 
 router.patch('/:id', produtosController.editarProdutos)
