@@ -40,16 +40,15 @@ const createProduto = (req, res) => {
 }
 
 const removerProdutos = (req, res) => {
-    const {id} = req.body
+    const id = parseInt(req.params.id)
 
     if(!id){
         return res.status(400).json({mensagem: "Digite o id do produto a ser removido"})
     }
 
-    
-    const removerProduto = produtosModelModel.removerProdutos(id)
+    const removerProduto = produtosModel.removerProdutos(id)
 
-    const produtos = produtosModelModel.findAllProdutos
+    const produtos = produtosModel.findAllProdutos
     res.status(201).json(produtos)
 }
 

@@ -50,6 +50,12 @@ const createProduto = (newProduto) => {
     return produtoWithId
 }
 
+const editarProdutos = (id, modificacoes) => {
+
+    index = produtos.findIndex(id)
+
+}
+
 
 const removerProdutos = ( valor) => {
     const chave = "id"

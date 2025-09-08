@@ -40,7 +40,7 @@ const createCliente = (req, res) => {
 }
 
 const removerCliente = (req, res) => {
-    const {id} = req.body
+    const id = parseInt(req.params.id)
 
     if(!id){
         return res.status(400).json({mensagem: "Digite o id do cliente a ser removido"})
@@ -51,6 +51,7 @@ const removerCliente = (req, res) => {
 
     const clientes = clientesModel.findAllClientes
     res.status(201).json(clientes)
+  
 }
 
 module.exports = {
