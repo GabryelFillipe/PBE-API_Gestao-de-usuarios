@@ -52,8 +52,16 @@ const createProduto = (newProduto) => {
 
 const editarProdutos = (id, modificacoes) => {
 
-    index = produtos.findIndex(id)
-
+    const index = produtos.findIndex(produtos => produtos.id === id)
+    if( index === -1){
+        return null
+    }
+    
+    produtos[index] ={
+        ...produtos[index],
+        ...modificacoes
+    }
+    return produtos[index]
 }
 
 
@@ -69,5 +77,6 @@ module.exports = {
     findById,
     findByName,
     createProduto,
+    editarProdutos,
     removerProdutos
 }

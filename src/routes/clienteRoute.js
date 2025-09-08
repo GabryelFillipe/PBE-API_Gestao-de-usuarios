@@ -12,6 +12,8 @@ router.get('/nome/:nome', clientesController.getClienteByname)
 
 router.post('/', clientesController.createCliente)
 
+router.patch('/:id', clientesController.editarClientes)
+
 router.delete('/:id', clientesController.removerCliente)
 
 module.exports = router

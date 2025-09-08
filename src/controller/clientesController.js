@@ -39,6 +39,19 @@ const createCliente = (req, res) => {
     res.status(201).json(newCliente)
 }
 
+const editarClientes = (req, res) => {
+    const id = parseInt(req.params.id)
+    const modificacoes = req.body
+
+    if (!modificacoes){
+        return res.status(400).json({ mensgame: `O id ${id} do cliente e suas modificações são obrigatorios` })
+    }
+    const clienteModificado = clientesModel.editarClientes(id,modificacoes)
+    res.status(201).json(clienteModificado)
+}
+
+
+
 const removerCliente = (req, res) => {
     const id = parseInt(req.params.id)
 
@@ -47,10 +60,10 @@ const removerCliente = (req, res) => {
     }
 
     
-    const removerCliente = clientesModel.removerCliente(id)
+    //const removerCliente = clientesModel.removerCliente(id)
 
-    const clientes = clientesModel.findAllClientes
-    res.status(201).json(clientes)
+    const listaAtualizada = clientesModel.removerCliente(id)
+    res.status(201).json(listaAtualizada)
   
 }
 
@@ -59,5 +72,6 @@ module.exports = {
     getClienteById,
     getClienteByname,
     createCliente,
+    editarClientes,
     removerCliente
 }

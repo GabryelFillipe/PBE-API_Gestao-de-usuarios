@@ -70,8 +70,18 @@ const createCliente = (newCliente) => {
     clientes.push(clienteWithId)
     return clienteWithId
 }
-const editarCliente = (idCliente) => {
-   
+const editarClientes = (id, modificacoes) => {
+
+    const index = clientes.findIndex(clientes => clientes.id === id)
+    if( index === -1){
+        return null
+    }
+    
+    clientes[index] ={
+        ...clientes[index],
+        ...modificacoes
+    }
+    return clientes[index]
 }
 
 const removerCliente = ( valor) => {
@@ -92,5 +102,6 @@ module.exports = {
     findById,
     findByName,
     createCliente,
+    editarClientes,
     removerCliente
 }

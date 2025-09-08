@@ -35,9 +35,23 @@ const createProduto = (req, res) => {
     if (!nome || !email) {
         return res.status(400).json({ mensgame: "Nome e email são obrigatorios" })
     }
-    const newCliente = produtosModelModel.createProduto({ nome, email })
+    const newProduto = produtosModel.createProduto({ nome, email })
     res.status(201).json(newProduto)
 }
+
+const editarProdutos = (req, res) => {
+    const id = parseInt(req.params.id)
+    const modificacoes = req.body
+
+    if (!modificacoes){
+        return res.status(400).json({ mensgame: `O id ${id} do produto e suas modificações são obrigatorios` })
+    }
+    const produtoModificado = produtosModel.editarProdutos(id,modificacoes)
+    res.status(201).json(produtoModificado)
+}
+
+
+
 
 const removerProdutos = (req, res) => {
     const id = parseInt(req.params.id)
@@ -46,10 +60,10 @@ const removerProdutos = (req, res) => {
         return res.status(400).json({mensagem: "Digite o id do produto a ser removido"})
     }
 
-    const removerProduto = produtosModel.removerProdutos(id)
+    const listaAtualizada = produtosModel.removerProdutos(id)
 
-    const produtos = produtosModel.findAllProdutos
-    res.status(201).json(produtos)
+ 
+    res.status(201).json(listaAtualizada)
 }
 
 module.exports = {
@@ -57,5 +71,6 @@ module.exports = {
     getProdutoById,
     getProdutoByname,
     createProduto,
+    editarProdutos,
     removerProdutos
 }
