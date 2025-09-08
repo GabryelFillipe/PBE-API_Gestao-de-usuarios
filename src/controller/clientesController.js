@@ -20,7 +20,7 @@ const getAllClientes = (req, res) => {
 
     else {
 
-        const clientes = clientesModel.findAllProdutos();
+        const clientes = clientesModel.findAllClientes();
         return res.status(200).json(clientes);
     }
 }
